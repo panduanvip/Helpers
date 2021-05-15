@@ -1,10 +1,11 @@
 {
     "name": "panduanvip/text-manipulation",
+    "type": "library",
     "description": "Text or string manipulation",
     "keywords": ["PHP", "Text Manipulation", "String Manipulation"],
-    "type": "library",
+    "homepage": "https://panduan.vip",
     "license": "MIT",
-
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Yoyon Sugiono",
@@ -14,15 +15,11 @@
         }
     ],
 
-    "minimum-stability": "stable",
-    "version": "1.0.0",
-
     "autoload": {
         "psr-4": {
             "PanduanVIP\\TextManipulation\\": "src/"
         }
     },
     
-    "require": {
-    }
+    
 }
