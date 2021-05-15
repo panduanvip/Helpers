@@ -24,8 +24,10 @@ Make a sentence from a spintax
 $string = "{green|blue|yellow} bird is sitting {there|over there|on the ground}.";
 $result = Text::spintax($string);
 ```
+
+**Result:** 
 ```
-Result: blue bird is sitting on the ground.
+blue bird is sitting on the ground.
 ```
 
 
@@ -42,8 +44,10 @@ test;
 
 $result = Text::string_to_array($string);
 ```
+
+**Result:**
 ```
-Result: ['Example of string', 'spanning multiple lines', 'using heredoc syntax.']
+['Example of string', 'spanning multiple lines', 'using heredoc syntax.']
 ```
 
 
@@ -55,8 +59,10 @@ Create excerpt from a paragraph
 $string = "PHP is a general-purpose scripting language especially suited to web development. It was stringly created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.";
 $result = Text::excerpt($string, 50);
 ```
+
+**Result:**
 ```
-Result: PHP is a general-purpose scripting language...
+PHP is a general-purpose scripting language...
 
 ```
 
@@ -68,8 +74,10 @@ Replace double with single space
 $string = "Lorem     ipsum dolor sit amet,   consectetur adipiscing elit";
 $result = Text::remove_double_space($string);
 ```
+
+**Result:**
 ```
-Result: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ```
 
 
@@ -81,6 +89,8 @@ Get a string between two strings
 $string = "This is my dog!";
 $result = Text::string_between($string, "my", "!");
 ```
+
+**Result:**
 ```
-Result: dog
+dog
 ```
