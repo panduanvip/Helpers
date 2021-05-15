@@ -19,5 +19,7 @@
             "PanduanVIP\\TextManipulation\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "php": ">=5.0"
+    }
 }
