@@ -14,13 +14,15 @@
         }
     ],
 
+    "minimum-stability": "stable",
+
     "autoload": {
         "psr-4": {
             "PanduanVIP\\TextManipulation\\": "src/"
         }
     },
+    
     "require": {
         "php": ">=5.0"
-    },
-    "minimum-stability": "1.0.0"
+    }
 }
