@@ -1,2 +1,2 @@
 # text-manipulation
- text or string manipulation library
+ Text or string manipulation library
