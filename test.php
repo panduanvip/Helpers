@@ -52,11 +52,11 @@ test;
 echo "<b>string:</b>";
 echo "<pre>";
 echo $string;
-$array = Text::string_to_array($string);
+$result = Text::string_to_array($string);
 echo '</pre>';
 echo "<b>result:</b>";
 echo '<pre>';
-print_r($array);
+print_r($result);
 echo "</pre>";
 echo '<hr>';
 

@@ -1,5 +1,5 @@
 {
-    "name": "panduanvip/text",
+    "name": "panduanvip/text-manipulation",
     "description": "Text or string manipulation",
     "keywords": ["PHP", "Text Manipulation", "String Manipulation"],
     "type": "library",
