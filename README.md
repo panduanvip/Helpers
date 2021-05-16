@@ -1,4 +1,4 @@
-# text-manipulation
+# Text Manipulation
 
  Text or string manipulation library
 
