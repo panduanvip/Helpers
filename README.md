@@ -4,7 +4,9 @@
 
 ## Installation:
 
+```bash
 composer require panduanvip/text-manipulation
+```
 
 ### Usage:
 
