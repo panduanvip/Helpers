@@ -94,3 +94,18 @@ $result = Text::string_between($string, "my", "!");
 ```
 dog
 ```
+
+
+### Text::slug ( $string ) : string
+
+Sanitize string for creating url slug
+
+```php
+$string = "красивые сакуры";
+$result = Text::slug($string);
+```
+
+**Result**
+```
+красивые-сакуры
+```
