@@ -3,9 +3,10 @@
     "type": "library",
     "description": "Text or string manipulation",
     "keywords": ["PHP", "Text Manipulation", "String Manipulation"],
-    "homepage": "https://panduan.vip",
     "license": "MIT",
     "minimum-stability": "stable",
+    "homepage": "https://panduan.vip",
+
     "authors": [
         {
             "name": "Yoyon Sugiono",
@@ -19,7 +20,6 @@
         "psr-4": {
             "PanduanVIP\\TextManipulation\\": "src/"
         }
-    },
-    
+    }    
     
 }
