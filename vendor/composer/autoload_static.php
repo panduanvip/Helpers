@@ -9,19 +9,20 @@ class ComposerStaticInitd39e875c397c916db1e8ae0ae5446692
     public static $prefixLengthsPsr4 = array (
         'P' => 
         array (
-            'PanduanVIP\\TextManipulation\\' => 28,
+            'PanduanVIP\\Helpers\\' => 19,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'PanduanVIP\\TextManipulation\\' => 
+        'PanduanVIP\\Helpers\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
     public static $classMap = array (
-        'PanduanVIP\\TextManipulation\\Text' => __DIR__ . '/../..' . '/src/Text.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'PanduanVIP\\Helpers\\Please' => __DIR__ . '/../..' . '/src/Please.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -8,7 +8,7 @@ class Please{
         Pick one item from the array randomly
     ----------------------------------------------------------------*/
 
-    public function pickOneRandom(array $array)
+    public static function pickOneRandom(array $array)
     {
         $array = array_map('trim', $array);
         $array = array_filter($array);
@@ -21,7 +21,7 @@ class Please{
         Trim all spaces near separators
     ----------------------------------------------------------------*/
 	
-	public function trimAllSpaces($string, $separator=',')
+	public static function trimAllSpaces($string, $separator=',')
 	{
 		$string = explode($separator, $string);
 		$string = array_map('trim', $string);

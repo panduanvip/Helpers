@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'PanduanVIP\\TextManipulation\\Text' => $baseDir . '/src/Text.php',
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'PanduanVIP\\Helpers\\Please' => $baseDir . '/src/Please.php',
 );
