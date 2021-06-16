@@ -1,6 +1,6 @@
-# Text Manipulation
+# Panduan.VIP Helpers
 
- Text or string manipulation library
+ A collection of PHP functions that I often use
 
 ## Installation:
 
