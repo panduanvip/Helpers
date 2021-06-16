@@ -4,6 +4,22 @@ include 'vendor/autoload.php';
 use PanduanVIP\Helpers\Please;
 
 
+// pick one randomly
+
+$array = ['Pen', 'Book', 'Laptop', 'Bus', 'Plane', ''];
+$result = Please::pickOneRandom($array);
+echo $result;
+echo '<hr>';
+
+
+// remove space near separator
+
+$string = "Gunadarma , Jayabaya, Pancasila,,";
+$result = Please::trimAllSpaces($string, ',');
+echo $result;
+echo '<hr>';
+
+
 // spintax
 
 $string = "{green|blue|yellow} bird is sitting {there|over there|on the ground}.";
