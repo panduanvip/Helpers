@@ -1,14 +1,42 @@
 <?php
 
-namespace PanduanVIP\TextManipulation;
+namespace PanduanVIP\Helpers;
 
-class Text{
+class Please{
     
+    /*----------------------------------------------------------------
+        Pick one item from the array randomly
+    ----------------------------------------------------------------*/
+
+    public function pickOneRandom(array $array)
+    {
+        $array = array_map('trim', $array);
+        $array = array_filter($array);
+        shuffle($array);
+        return array_shift($array);
+    }
+
+
+	/*----------------------------------------------------------------
+        Trim all spaces near separators
+    ----------------------------------------------------------------*/
+	
+	public function trimAllSpaces($string, $separator=',')
+	{
+		$string = explode($separator, $string);
+		$string = array_map('trim', $string);
+		$string = array_filter($string);
+		$string = implode($separator, $string);	
+		return $string;
+	}		
+	
+
     /*----------------------------------------------------------------
         Make a sentence from a spintax
     ----------------------------------------------------------------*/
     
-    public static function spintax($string) {
+    public static function createSpintax($string) 
+	{
         preg_match('#{(.+?)}#is', $string, $m);
       
         if(empty($m)) return $string;
@@ -20,15 +48,15 @@ class Text{
       
         $parts = explode("|", $t);
         $string = preg_replace("+{".preg_quote($t)."}+is", $parts[array_rand($parts)], $string, 1);
-        return self::spintax($string);
+        return self::createSpintax($string);
     }
 
 
     /*----------------------------------------------------------------
-        Converts string to array based on newlines
+        Converts string to array based on newline
     ----------------------------------------------------------------*/
 
-    public static function string_to_array($string)
+    public static function explodeNewLine($string)
     {
         $array = preg_split('/\r\n|\r|\n/', $string);
         $array = array_map('trim', $array);
@@ -41,7 +69,7 @@ class Text{
         Take excerpt from a paragraph
     ----------------------------------------------------------------*/
 
-    public static function excerpt($string, $max_length = 140, $cut_off = '...', $keep_word = true)
+    public static function createExcerpt($string, $max_length = 140, $cut_off = '...', $keep_word = true)
     {
         if (strlen($string) <= $max_length) {
             return $string;
@@ -71,7 +99,7 @@ class Text{
         Remove double space
     ----------------------------------------------------------------*/
 
-    public static function remove_double_space($string){
+    public static function removeDoubleSpace($string){
         while(strpos($string, "  ")!==false){
             $string = str_replace("  ", " ", $string);
         }
@@ -83,7 +111,7 @@ class Text{
         Get string between two strings
     -----------------------------------------------------------------------*/
 
-    public static function string_between($string, $start, $end){
+    public static function getStringBetween($string, $start, $end){
         $string = ' ' . $string;
         $ini = strpos($string, $start);
         if ($ini == 0) return '';
@@ -101,7 +129,7 @@ class Text{
         with minimum modifications
     -----------------------------------------------------------------------*/
 
-    public static function slug($title)
+    public static function createSlug($title)
     {
         $title = strip_tags($title);
         $title = preg_replace('|%([a-fA-F0-9][a-fA-F0-9])|', '---$1---', $title);

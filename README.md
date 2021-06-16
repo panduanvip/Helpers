@@ -5,7 +5,7 @@
 ## Installation:
 
 ```bash
-composer require panduanvip/text-manipulation
+composer require panduanvip/helpers
 ```
 
 ### Usage:
@@ -14,17 +14,40 @@ composer require panduanvip/text-manipulation
 <?php
 
 include 'vendor/autoload.php';
-use PanduanVIP\TextManipulation\Text;
+use PanduanVIP\Helpers\Please;
+```
+
+### Pick one item from the array randomly
+
+```php
+$array = ['Pen', 'Book', 'Laptop', 'Bus', 'Plane', ''];
+$result = Please::pickOneRandom($array);
+```
+
+**Result:** 
+```
+Book
 ```
 
 
-### Text::spintax ( $string ) : string
+### Trim all spaces near separators
 
-Make a sentence from a spintax
+```php
+$string = "Gunadarma , Jayabaya, Pancasila,,";
+$result = Please::trimAllSpaces($string, ',');
+```
+
+**Result:** 
+```
+Gunadarma,Jayabaya,Pancasila
+```
+
+
+### Make a sentence from a spintax
 
 ```php
 $string = "{green|blue|yellow} bird is sitting {there|over there|on the ground}.";
-$result = Text::spintax($string);
+$result = Please::createSpintax($string);
 ```
 
 **Result:** 
@@ -33,9 +56,7 @@ blue bird is sitting on the ground.
 ```
 
 
-### Text::string_to_array ( $string ) : array
-
-Converts string to array based on newlines
+### Converts string to array based on newlines
 
 ```php
 $string = <<<test
@@ -44,7 +65,7 @@ spanning multiple lines
 using heredoc syntax.
 test;
 
-$result = Text::string_to_array($string);
+$result = Please::explodeNewLine($string);
 ```
 
 **Result:**
@@ -53,13 +74,11 @@ $result = Text::string_to_array($string);
 ```
 
 
-### Text::excerpt ( $string, $max_length=40, $cut_off="...", $keep_word=true ) : string
-
-Create excerpt from a paragraph
+### Create excerpt from a paragraph
 
 ```php
 $string = "PHP is a general-purpose scripting language especially suited to web development. It was stringly created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.";
-$result = Text::excerpt($string, 50);
+$result = Please::createExcerpt($string, 50);
 ```
 
 **Result:**
@@ -68,13 +87,11 @@ PHP is a general-purpose scripting language...
 
 ```
 
-### Text::remove_double_space ( $string ) : string
-
-Replace double with single space
+### Replace double with single space
 
 ```php
 $string = "Lorem     ipsum dolor sit amet,   consectetur adipiscing elit";
-$result = Text::remove_double_space($string);
+$result = Please::removeDoubleSpace($string);
 ```
 
 **Result:**
@@ -83,13 +100,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ```
 
 
-### Text::string_between ( $string, $start, $end ) : string
-
-Get a string between two strings
+### Get a string between two strings
 
 ```php
 $string = "This is my dog!";
-$result = Text::string_between($string, "my", "!");
+$result = Please::getStringBetween($string, "my", "!");
 ```
 
 **Result:**
@@ -98,13 +113,11 @@ dog
 ```
 
 
-### Text::slug ( $string ) : string
-
-Sanitize string for creating url slug
+### Sanitize string for creating url slug
 
 ```php
 $string = "красивые сакуры";
-$result = Text::slug($string);
+$result = Please::createSlug($string);
 ```
 
 **Result**

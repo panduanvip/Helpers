@@ -1,5 +1,5 @@
 {
-    "name": "panduanvip/text-manipulation",
+    "name": "panduanvip/helper",
     "type": "library",
     "description": "Text or string manipulation",
     "keywords": ["PHP", "Text Manipulation", "String Manipulation"],
@@ -18,7 +18,7 @@
 
     "autoload": {
         "psr-4": {
-            "PanduanVIP\\TextManipulation\\": "src/"
+            "PanduanVIP\\Helpers\\": "src/"
         }
     }    
     
