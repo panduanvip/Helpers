@@ -12,6 +12,9 @@ class Please{
     {
         $array = array_map('trim', $array);
         $array = array_filter($array);
+	if(empty($array)){
+	    return '';
+	}
         shuffle($array);
         return array_shift($array);
     }
