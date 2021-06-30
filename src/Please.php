@@ -5,6 +5,33 @@ namespace PanduanVIP\Helpers;
 class Please{
     
     /*----------------------------------------------------------------
+        Create unique ID
+    ----------------------------------------------------------------*/
+
+    public static function createUniqID($length=5)
+    {
+        $number = range(0, 9);
+        $lower = range('a', 'z');
+        $upper = range('A', 'Z');
+
+        $elements = ['number', 'lower', 'upper'];
+        
+        $element = '';
+        $old_element = '';
+        $uniqID = '';
+
+        foreach(range(0, $length) as $len){
+            while($element == $old_element){
+                $element = self::pickOneRandom($elements);
+            }
+            $old_element = $element;
+            $uniqID .= self::pickOneRandom($$element);
+        }
+        return $uniqID;
+    }
+
+
+    /*----------------------------------------------------------------
         Pick one item from the array randomly
     ----------------------------------------------------------------*/
 
@@ -12,9 +39,9 @@ class Please{
     {
         $array = array_map('trim', $array);
         $array = array_filter($array);
-	if(empty($array)){
-	    return '';
-	}
+        if(empty($array)){
+            return '';
+        }
         shuffle($array);
         return array_shift($array);
     }

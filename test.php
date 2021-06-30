@@ -3,6 +3,11 @@
 include 'vendor/autoload.php';
 use PanduanVIP\Helpers\Please;
 
+// Create uniq ID
+
+echo Please::createUniqID(10);
+echo '<hr>';
+
 
 // pick one randomly
 
