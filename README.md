@@ -19,8 +19,10 @@ use PanduanVIP\Helpers\Please;
 
 ### Create uniq ID
 
+```php
 echo Please::createUniqID();
 echo '<hr>';
+```
 
 **Result:** 
 ```
