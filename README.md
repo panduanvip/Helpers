@@ -17,6 +17,17 @@ include 'vendor/autoload.php';
 use PanduanVIP\Helpers\Please;
 ```
 
+### Create uniq ID
+
+echo Please::createUniqID();
+echo '<hr>';
+
+**Result:** 
+```
+7y2cNs
+```
+
+
 ### Pick one item from the array randomly
 
 ```php

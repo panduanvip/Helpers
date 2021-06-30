@@ -5,7 +5,7 @@ use PanduanVIP\Helpers\Please;
 
 // Create uniq ID
 
-echo Please::createUniqID(10);
+echo Please::createUniqID();
 echo '<hr>';
 
 
