@@ -17,11 +17,36 @@ include 'vendor/autoload.php';
 use PanduanVIP\Helpers\Please;
 ```
 
-### Create uniq ID
+
+### Get web content
 
 ```php
-echo Please::createUniqID();
-echo '<hr>';
+echo Please::getWebContent('https://google.com');
+```
+
+**Result:** 
+```
+return html page from google.com
+```
+
+
+
+### Get multiple web contents
+
+```php
+echo Please::getWebContents(['https://google.com', 'https://yahoo.com']);
+```
+
+**Result:** 
+```
+return html pages from google.com dan yahoo.com
+```
+
+
+### Create random string
+
+```php
+echo Please::createRandomString();
 ```
 
 **Result:** 

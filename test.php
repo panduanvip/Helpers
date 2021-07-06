@@ -3,9 +3,24 @@
 include 'vendor/autoload.php';
 use PanduanVIP\Helpers\Please;
 
-// Create uniq ID
 
-echo Please::createUniqID();
+// Get web content
+
+$html = getWebContent('https://google.com');
+echo $html;
+echo '<hr>';
+
+
+// Get multiple web contents
+
+$htmls = getWebContents(['https://google.com', 'https://yahoo.com']);
+print_r($htmls);
+echo '<hr>';
+
+
+// Create random string
+
+echo Please::createRandomString();
 echo '<hr>';
 
 

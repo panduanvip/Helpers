@@ -5,10 +5,129 @@ namespace PanduanVIP\Helpers;
 class Please{
     
     /*----------------------------------------------------------------
-        Create unique ID
+        Get single web content
     ----------------------------------------------------------------*/
 
-    public static function createUniqID($length=5)
+    public static function getWebContent($url, $proxy='', $userAgent='auto', $referer='auto')
+	{	
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+
+        if (!empty($proxy)) {
+			curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		}
+
+        if($userAgent == 'auto'){
+            if(isset($_SERVER['HTTP_USER_AGENT']) && !empty($_SERVER['HTTP_USER_AGENT'])){
+                curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+            }
+        } elseif(!empty($userAgent)){
+            curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
+        }
+
+        if($referer == 'auto'){
+            if (isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])) {
+                curl_setopt($ch, CURLOPT_REFERER, $_SERVER['HTTP_REFERER']);
+            }
+        } elseif(!empty($referer)){
+            curl_setopt($ch, CURLOPT_REFERER, $referer);
+        }
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_AUTOREFERER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+		
+		$result = curl_exec($ch);
+		curl_close($ch);
+		return $result;
+	}
+
+
+    /*----------------------------------------------------------------
+        Get multiple web contents
+    ----------------------------------------------------------------*/
+
+    public static function getWebContents(array $urls, $proxy='', $userAgent='auto', $referer='auto')
+    {
+        $ch = [];
+        $mh = curl_multi_init();
+
+        foreach ($urls as $key => $url) {
+            $ch[$key] = curl_init();
+            curl_setopt($ch[$key], CURLOPT_URL, $url);
+
+            if (!empty($proxy)) {
+                curl_setopt($ch[$key], CURLOPT_PROXY, $proxy);
+            }
+
+            if($userAgent == 'auto'){
+                if (isset($_SERVER['HTTP_USER_AGENT']) && !empty($_SERVER['HTTP_USER_AGENT'])) {
+                    curl_setopt($ch[$key], CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+                }
+            } elseif(!empty($userAgent)) {
+                curl_setopt($ch[$key], CURLOPT_USERAGENT, $userAgent);
+            }
+
+            if($referer == 'auto'){
+                if(isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])){
+                    curl_setopt($ch[$key], CURLOPT_REFERER, $_SERVER['HTTP_REFERER']);
+                }
+            } elseif(!empty($referer)){
+                curl_setopt($ch[$key], CURLOPT_REFERER, $referer);
+            }
+
+            curl_setopt($ch[$key], CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch[$key], CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch[$key], CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch[$key], CURLOPT_AUTOREFERER, false);
+            curl_setopt($ch[$key], CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch[$key], CURLOPT_FRESH_CONNECT, true);
+            curl_setopt($ch[$key], CURLOPT_HEADER, false);
+            curl_setopt($ch[$key], CURLOPT_TIMEOUT, 60);
+            curl_multi_add_handle($mh, $ch[$key]);
+        }
+
+        $active = null;
+        do {
+            $mrc = curl_multi_exec($mh, $active);
+        } while ($mrc == CURLM_CALL_MULTI_PERFORM);
+
+        while ($active && $mrc == CURLM_OK) {
+            if (curl_multi_select($mh) == -1) {
+                usleep(1);
+            }
+
+            do {
+                $mrc = curl_multi_exec($mh, $active);
+            } while ($mrc == CURLM_CALL_MULTI_PERFORM);
+        }
+
+        $results = [];
+        foreach ($urls as $key => $url) {
+            $curl_error = curl_error($ch[$key]);
+            if ($curl_error == "") {
+                $results[$key] = curl_multi_getcontent($ch[$key]);
+            }
+
+            curl_multi_remove_handle($mh, $ch[$key]);
+            curl_close($ch[$key]);
+        }
+        curl_multi_close($mh);
+
+        return $results;
+    }
+
+
+    /*----------------------------------------------------------------
+        Create random string
+    ----------------------------------------------------------------*/
+
+    public static function createRandomString($length=5)
     {
         $number = range(0, 9);
         $lower = range('a', 'z');
