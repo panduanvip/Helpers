@@ -6,14 +6,14 @@ use PanduanVIP\Helpers\Please;
 
 // Get web content
 
-$html = getWebContent('https://google.com');
+$html = Please::getWebContent('https://google.com');
 echo $html;
 echo '<hr>';
 
 
 // Get multiple web contents
 
-$htmls = getWebContents(['https://google.com', 'https://yahoo.com']);
+$htmls = Please::getWebContents(['https://google.com', 'https://yahoo.com']);
 print_r($htmls);
 echo '<hr>';
 
